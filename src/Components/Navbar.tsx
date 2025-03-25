@@ -11,7 +11,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="block bg-kOrange w-full px-4 py-2 mx-auto bg-white shadow-xs rounded-md lg:px-1 lg:py-3 mt-2">
+            <nav className="block w-full px-4 py-2 mx-auto bg-white shadow-xs rounded-md lg:px-1 lg:py-3 mt-2">
                 <div className="container flex flex-wrap items-center justify-between mx-auto ">
                     <Link to={"/"} className="mr-10 block cursor-pointer py-1">
                         <img src={logo} alt="Logo" className="w-28 " />
@@ -20,7 +20,7 @@ const Navbar = () => {
                     <div className="hidden lg:block">
                         <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
                             <li className="flex items-center p-1 text-lg gap-x-2 text-slate-600">
-                                <Link to={"/"} className="flex items-center">
+                                <Link to={"/courses"} className="flex items-center">
                                     Courses
                                 </Link>
                             </li>
@@ -42,37 +42,12 @@ const Navbar = () => {
                         </ul>
                     </div>
 
-                    <div className="items-center hidden gap-x-2 lg:flex">
-                        <div className="w-full max-w-sm min-w-[200px]">
-                            <div className="relative">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth="1.5"
-                                    stroke="currentColor"
-                                    className="absolute w-5 h-5 top-2.5 left-2.5 text-slate-600"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                                    />
-                                </svg>
-                                <input
-                                    type="text"
-                                    className="w-full pl-10 pr-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-lg border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                    placeholder="Type here..."
-                                />
-                            </div>
-                        </div>
-
-                        <button
-                            className="rounded-md bg-kOrange py-2 px-4 border border-transparent text-center text-lg text-white transition-all shadow-md hover:shadow-lg hover:bg-kPink"
-                            type="button"
-                        >
-                            Search
-                        </button>
+                    <div className="hidden lg:block">
+                        <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-kOrange-600 text-white rounded-md">
+                            <button className="w-32 py-2 text-lg font-semibold text-white bg-kBlue rounded-md">
+                                Sign Up
+                            </button>
+                        </Link>
                     </div>
 
                     <button
@@ -102,7 +77,7 @@ const Navbar = () => {
                     <div className="lg:hidden">
                         <ul className="flex flex-col gap-2 mt-2 mb-4 items-center lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
                             <li className="flex items-center p-1 text-lg gap-x-2 text-slate-600">
-                                <Link to={"/"} className="flex items-center">
+                                <Link to={"/courses"} className="flex items-center">
                                     Courses
                                 </Link>
                             </li>
@@ -119,6 +94,13 @@ const Navbar = () => {
                             <li className="flex items-center p-1 text-lg gap-x-2 text-slate-600">
                                 <Link to={"/"} className="flex items-center">
                                     Practice Tests
+                                </Link>
+                            </li>
+                            <li className="flex items-center p-1 text-lg gap-x-2 " >
+                                <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-kOrange-600 text-white rounded-md">
+                                    <button className="w-32 py-2 text-lg font-semibold text-white bg-kBlue rounded-md">
+                                        Sign Up
+                                    </button>
                                 </Link>
                             </li>
                         </ul>

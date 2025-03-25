@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import UserDropdown from "./UserDropdown";
+
+
+
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,12 +46,13 @@ const Navbar = () => {
                         </ul>
                     </div>
 
-                    <div className="hidden lg:block">
+                    <div className="hidden lg:flex gap-4">
                         <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-kOrange-600 text-white rounded-md">
                             <button className="w-32 py-2 text-lg font-semibold text-white bg-kBlue rounded-md">
                                 Sign Up
                             </button>
                         </Link>
+                        <UserDropdown />
                     </div>
 
                     <button
@@ -102,6 +107,7 @@ const Navbar = () => {
                                         Sign Up
                                     </button>
                                 </Link>
+                                <UserDropdown />
                             </li>
                         </ul>
                     </div>

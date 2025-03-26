@@ -19,7 +19,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="block w-full px-4 py-2 mx-auto bg-white shadow-xs rounded-md lg:px-1 lg:py-3 mt-2">
+            <nav className="block w-full px-4 py-2 mx-auto bg-white shadow-md lg:px-1 lg:py-1 fixed top-0 z-50 ">
                 <div className="container flex flex-wrap items-center justify-between mx-auto ">
                     <Link to={"/"} className="mr-10 block cursor-pointer py-1">
                         <img src={logo} alt="Logo" className="w-28 " />

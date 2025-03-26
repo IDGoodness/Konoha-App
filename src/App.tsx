@@ -23,10 +23,14 @@ function App() {
           <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/signup" element={<SignUp />} />
               <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
               <Route path="/reset" element={<ResetPassword />} />
-              <Route path="/courses" element={<ProtectedRoute><Courses /></ProtectedRoute>} />
+              
+              {/* Protected Routes */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/courses" element={<Courses />} />
+              </Route>
             </Routes>
           <Footer />
         </BrowserRouter>

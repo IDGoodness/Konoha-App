@@ -18,9 +18,9 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gray-100">
       <div className="flex flex-1 items-center justify-center p-6">
-        <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
+        <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-16">
           <h2 className="text-2xl font-bold mb-4 text-center">Reset Password</h2>
           <input
             className="w-full p-3 border rounded-lg mb-3"
@@ -30,7 +30,7 @@ const ResetPassword = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <button
-            className="w-full bg-yellow-600 hover:bg-yellow-700 text-white p-3 rounded-lg font-semibold"
+            className="w-full bg-kOrange hover:bg-orange-500 text-white p-3 rounded-lg font-semibold"
             onClick={handleReset}
           >
             Send Reset Email

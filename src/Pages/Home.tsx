@@ -31,7 +31,7 @@ const Home = () => {
         <div className="text-center lg:text-left max-w-5xl">
           <h1 className="text-3xl lg:text-4xl font-bold">Ever wanted a tutor that is always here all day and all night?</h1>
           <p className="mt-7 text-xs lg:text-lg">Try out the Konoha Superhuman Tutor for free <br /> (You'll get to learn Web3 at your own pace plus it's integrated with GPT 4 so you can learn pretty much anything you want to learn.)</p>
-          <button className="mt-20 px-6 py-2 bg-kOrange text-white rounded-md hover:bg-orange-500"><Link to={"signup"} >Get Started</Link></button>
+          <button className="mt-20 px-6 py-2 bg-kOrange text-white rounded-md hover:bg-orange-500"><Link to={"/ask"} >Get Started</Link></button>
         </div>
       </div>
 
@@ -87,7 +87,7 @@ const Home = () => {
             <div key={index} className="bg-white p-6 rounded-2xl shadow-md h-[200px] text-center">
               <h3 className="text-xl font-semibold">{method.title}</h3>
               <p className="text-gray-600 mt-2">{method.description}</p>
-              <button className="mt-4 px-6 py-2 bg-kOrange text-white rounded-2xl hover:bg-orange-500"><Link to={"/"} > {method.cta} </Link></button>
+              <button className="mt-4 px-6 py-2 bg-kOrange text-white rounded-2xl hover:bg-orange-500"><Link to={"/ask"} > {method.cta} </Link></button>
             </div>
           ))}
         </div>
@@ -105,7 +105,8 @@ const Home = () => {
         </div>
         <p className="text-center text-white mt-2">Join our community of learners and educators to share knowledge, resources, and insights.</p>
         <div className="flex items-center justify-center mt-8">
-          <button className="px-6 py-2 bg-white text-kBrown rounded-md hover:bg-orange-500 hover:text-white"><Link to={"/signup"} >Join Now</Link></button>
+          {/* Add a socials or WhatsApp link here instead Do not forget!!! */}
+          <button className="px-6 py-2 bg-white text-kBrown rounded-md hover:bg-orange-500 hover:text-white"><Link to={"/"} >Join Now</Link></button>
         </div>
       </div>
     </div>

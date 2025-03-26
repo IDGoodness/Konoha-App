@@ -10,6 +10,7 @@ import Courses from './Pages/Courses';
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from './Components/ProtectedRoute';
 import NotFound from './Pages/NotFound';
+import Ask from './Pages/Ask';
 
 
 
@@ -32,6 +33,7 @@ function App() {
               {/* Protected Routes */}
               <Route element={<ProtectedRoute />}>
                 <Route path="/courses" element={<Courses />} />
+                <Route path="/ask" element={<Ask />} />
               </Route>
             </Routes>
           <Footer />

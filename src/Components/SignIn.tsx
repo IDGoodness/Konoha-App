@@ -18,8 +18,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center p-6">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
+    <div className="flex flex-col min-h-screen items-center justify-center p-6 bg-gray-100">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-20">
         <h2 className="text-2xl font-bold mb-4 text-center">Sign In</h2>
         <input
           className="w-full p-3 border rounded-lg mb-3"
@@ -36,7 +36,7 @@ const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-semibold"
+          className="w-full bg-kOrange hover:bg-orange-500 text-white p-3 rounded-lg font-semibold"
           onClick={handleSignIn}
         >
           Sign In

@@ -33,17 +33,17 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className="flex items-center p-1 text-lg gap-x-2 text-slate-600">
-                                <Link to={"/"} className="flex items-center">
+                                <Link to={"/ask"} className="flex items-center">
                                     Ask Konoha GPT
                                 </Link>
                             </li>
                             <li className="flex items-center p-1 text-lg gap-x-2 text-slate-600">
-                                <Link to={"/"} className="flex items-center">
+                                <Link to={"/flash"} className="flex items-center">
                                     FlashCards
                                 </Link>
                             </li>
                             <li className="flex items-center p-1 text-lg gap-x-2 text-slate-600">
-                                <Link to={"/"} className="flex items-center">
+                                <Link to={"/test"} className="flex items-center">
                                     Practice Tests
                                 </Link>
                             </li>
@@ -52,9 +52,9 @@ const Navbar = () => {
 
                     <div className="hidden lg:flex gap-4">
                         {!user ? (
-                                <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-kOrange-600 text-white rounded-md">
-                                    <button className="w-32 py-2 text-lg font-semibold text-white bg-kBlue rounded-md">
-                                        Sign Up
+                                <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-orange-500 text-white rounded-md">
+                                    <button className="w-40 py-2 text-lg font-semibold text-white">
+                                        Sign Up/ Sign In
                                     </button>
                                 </Link>
                             ) : (
@@ -111,9 +111,9 @@ const Navbar = () => {
                             </li>
                             <li className="flex items-center p-1 text-lg gap-x-2 " >
                                 {!user ? (
-                                        <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-kOrange-600 text-white rounded-md">
-                                            <button className="w-32 py-2 text-lg font-semibold text-white bg-kBlue rounded-md">
-                                                Sign Up
+                                        <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-orange-500 text-white rounded-md">
+                                            <button className="w-32 py-2 text-lg font-semibold text-white">
+                                                Sign Up/Sign Up
                                             </button>
                                         </Link>
                                     ) : (

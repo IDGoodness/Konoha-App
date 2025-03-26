@@ -11,6 +11,7 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from './Components/ProtectedRoute';
 import NotFound from './Pages/NotFound';
 import Ask from './Pages/Ask';
+import ScrollToTop from './Components/ScrollToTop';
 
 
 
@@ -23,6 +24,7 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Navbar />
+          <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/signin" element={<SignIn />} />

@@ -1,6 +1,6 @@
 //import React from "react";
 
-const HomePage = () => {
+const Home = () => {
   return (
     <div className="w-full min-h-screen bg-gray-100">
       {/* FRAME1 */}
@@ -128,4 +128,4 @@ const learningMethods = [
   { title: "AI course creation", description: "Create a course from scratch with AI.", cta: "Get in now." },
 ];
 
-export default HomePage;
+export default Home;

@@ -27,8 +27,7 @@ const Home = () => {
   return (
     <div className="w-full min-h-screen bg-gray-100">
       {/* FRAME1 */}
-      <div className="relative w-full p-20 lg:p-40 bg-cover bg-center flex items-start justify-center text-white"
-           style={{ backgroundImage: `url(${hero})` }}>
+      <div className="relative w-full p-20 lg:p-40 bg-cover bg-center flex items-start justify-center text-white z-0" style={{ backgroundImage: `url(${hero})` }}>
         <div className="text-center lg:text-left max-w-5xl">
           <h1 className="text-3xl lg:text-4xl font-bold">Ever wanted a tutor that is always here all day and all night?</h1>
           <p className="mt-7 text-xs lg:text-lg">Try out the Konoha Superhuman Tutor for free <br /> (You'll get to learn Web3 at your own pace plus it's integrated with GPT 4 so you can learn pretty much anything you want to learn.)</p>
@@ -95,9 +94,9 @@ const Home = () => {
       </div>
 
       {/* Join our Community */}
-      <div className="bg-kOrange rounded-4xl py-12 lg:px-20 max-w-6xl mx-auto " >
+      <div className="bg-kOrange rounded-4xl py-12 md:px-20 max-w-6xl mx-auto " >
         <h2 className="text-3xl font-semibold text-center text-white">Join our Community</h2>
-        <div className="mt-8 mx-auto space-y-5 grid grid-cols-4 md:grid-cols-7 " >
+        <div className="mt-8 mx-auto px-20 space-y-5 grid grid-cols-4 md:grid-cols-7 " >
           {community.map((member, index) => (
             <div key={index} className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden">
               <img src={member.image} alt="Community Member" className="w-full h-full object-cover" />

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import UserDropdown from "./UserDropdown";
+import { useAuth } from "../context/AuthContext";
+
 
 
 
@@ -12,6 +14,8 @@ const Navbar = () => {
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
+
+    const { user } = useAuth();
 
     return (
         <>
@@ -47,12 +51,16 @@ const Navbar = () => {
                     </div>
 
                     <div className="hidden lg:flex gap-4">
-                        <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-kOrange-600 text-white rounded-md">
-                            <button className="w-32 py-2 text-lg font-semibold text-white bg-kBlue rounded-md">
-                                Sign Up
-                            </button>
-                        </Link>
-                        <UserDropdown />
+                        {!user ? (
+                                <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-kOrange-600 text-white rounded-md">
+                                    <button className="w-32 py-2 text-lg font-semibold text-white bg-kBlue rounded-md">
+                                        Sign Up
+                                    </button>
+                                </Link>
+                            ) : (
+                                <UserDropdown />
+                            )
+                        }
                     </div>
 
                     <button
@@ -102,12 +110,16 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className="flex items-center p-1 text-lg gap-x-2 " >
-                                <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-kOrange-600 text-white rounded-md">
-                                    <button className="w-32 py-2 text-lg font-semibold text-white bg-kBlue rounded-md">
-                                        Sign Up
-                                    </button>
-                                </Link>
-                                <UserDropdown />
+                                {!user ? (
+                                        <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-kOrange-600 text-white rounded-md">
+                                            <button className="w-32 py-2 text-lg font-semibold text-white bg-kBlue rounded-md">
+                                                Sign Up
+                                            </button>
+                                        </Link>
+                                    ) : (
+                                        <UserDropdown />
+                                    )
+                                }
                             </li>
                         </ul>
                     </div>

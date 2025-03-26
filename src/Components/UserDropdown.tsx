@@ -7,7 +7,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const storage = getStorage();
 
 const UserDropdown = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [displayName, setDisplayName] = useState(user?.displayName || "");
   const [photoFile, setPhotoFile] = useState<File | null>(null);
@@ -70,6 +70,7 @@ const UserDropdown = () => {
           >
             Update Profile
           </button>
+          <button onClick={logout} className="w-full bg-red-600 hover:bg-red-700 text-white p-2 rounded mt-2" >Log Out</button>
           {message && <p className="text-xs text-green-600 mt-2">{message}</p>}
         </div>
       )}

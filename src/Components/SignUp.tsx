@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { signUp } from "../authService";
 
 const SignUp = () => {
@@ -11,7 +11,7 @@ const SignUp = () => {
   const handleSignUp = async () => {
     try {
       await signUp(email, password);
-      navigate("/signin"); // Redirect to signIn page after successful sign-up
+      navigate("/signin"); // Redirect to sign-in page after successful sign-up
     } catch (error: any) {
       setMessage(error.message);
     }
@@ -42,6 +42,14 @@ const SignUp = () => {
           Sign Up
         </button>
         {message && <p className="mt-3 text-sm text-red-500 text-center">{message}</p>}
+        
+        {/* Sign-in link added back */}
+        <p className="mt-4 text-center text-lg">
+          Already have an account?{" "}
+          <Link to="/signin" className="text-kOrange hover:underline">
+            Sign In
+          </Link>
+        </p>
       </div>
     </div>
   );

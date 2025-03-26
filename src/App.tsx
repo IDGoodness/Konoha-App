@@ -9,6 +9,7 @@ import ResetPassword from './Components/ResetPassword';
 import Courses from './Pages/Courses';
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from './Components/ProtectedRoute';
+import NotFound from './Pages/NotFound';
 
 
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/reset" element={<ResetPassword />} />
+              <Route path="*" element={<NotFound />} />
               
               {/* Protected Routes */}
               <Route element={<ProtectedRoute />}>

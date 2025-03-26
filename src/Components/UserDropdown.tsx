@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { auth } from "../firebase";
 import { updateProfile } from "firebase/auth";
@@ -12,7 +12,6 @@ const UserDropdown = () => {
   const [displayName, setDisplayName] = useState(user?.displayName || "");
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [message, setMessage] = useState("");
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleUpdateProfile = async () => {
     if (user) {
@@ -27,32 +26,17 @@ const UserDropdown = () => {
           displayName,
           photoURL,
         });
-        setMessage("Profile updated successfully!");
+
+        // Force UI update by reloading user info
+        window.location.reload(); // Quick solution for now
       } catch (error: any) {
         setMessage(error.message);
       }
     }
   };
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
-
   return (
-    <div className="relative z-10" ref={dropdownRef}>
+    <div className="relative z-10">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-2 bg-gray-200 p-2 rounded-lg"

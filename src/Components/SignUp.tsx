@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { signUp } from "../authService";
 
+
+
 const SignUp = () => {
   // const [ displayName, setDisplayName ] = useState("");
   const [email, setEmail] = useState("");

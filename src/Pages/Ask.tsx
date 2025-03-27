@@ -5,28 +5,35 @@ import OpenAI from "openai";
 const openai = new OpenAI({ apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true });
 
 const Ask = () => {
-  const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessageParam[]>([]);
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>(
+    JSON.parse(localStorage.getItem("chatHistory") || "[]")
+  );
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const chatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    localStorage.setItem("chatHistory", JSON.stringify(messages));
     chatRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
     
-    const newMessages: OpenAI.Chat.ChatCompletionMessageParam[] = [...messages, { role: "user", content: input }];
+    const newMessages = [...messages, { role: "user", content: input } as OpenAI.Chat.ChatCompletionMessageParam];
     setMessages(newMessages);
     setInput("");
     setLoading(true);
     
     try {
       const response = await openai.chat.completions.create({
-        model: "gpt-4",
-        messages: newMessages,
+        model: "gpt-4o",
+        messages: [
+          { role: "system", content: "You are an expert Web3 tutor." },
+          ...messages
+        ],
       });
+
       
       const botReply = response.choices[0]?.message?.content || "Sorry, I didn't understand that.";
       setMessages([...newMessages, { role: "assistant", content: botReply }]);
@@ -37,10 +44,19 @@ const Ask = () => {
     setLoading(false);
   };
 
+  const clearChat = () => {
+    setMessages([]);
+    localStorage.removeItem("chatHistory");
+  };
+
+
   return (
     <div className="flex flex-col h-screen w-full bg-gray-100 mt-20 lg:max-w-2xl lg:mx-auto rounded-3xl shadow-xs ">
       {/* Chat Header */}
-      <div className="p-4 bg-white text-center font-semibold text-lg">Ask Konoha GPT</div>
+      <div className="p-4 bg-white text-center font-semibold text-lg flex justify-between ">
+        <span>Ask Konoha GPT</span>
+        <button onClick={clearChat} className="text-sm bg-kOrange text-white p-2 px-5 rounded-md hover:bg-red-600 " >Clear</button>
+      </div>
       
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ maxHeight: "calc(100vh - 110px)" }}>

@@ -1,8 +1,16 @@
 // import React from 'react'
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { useLocation } from "react-router-dom";
+
+
 
 const Footer = () => {
+    const location = useLocation();
+
+        if (location.pathname === "/ask") {
+            return null; // Hide footer on Ask page
+        }
   return (
     <>
         <footer className="bg-kOrange w-full px-10 mt-10">

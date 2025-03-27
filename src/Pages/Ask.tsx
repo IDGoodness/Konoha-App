@@ -38,16 +38,16 @@ const Ask = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full bg-gray-100 mt-24">
+    <div className="flex flex-col h-screen w-full bg-gray-100 mt-20 lg:max-w-2xl lg:mx-auto rounded-3xl shadow-xs ">
       {/* Chat Header */}
-      <div className="p-4 bg-white shadow-md text-center font-semibold text-lg">Ask Konoha GPT</div>
+      <div className="p-4 bg-white text-center font-semibold text-lg">Ask Konoha GPT</div>
       
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ maxHeight: "calc(100vh - 110px)" }}>
         {messages.map((msg, index) => (
           <div 
             key={index} 
-            className={`p-3 rounded-lg max-w-[80%] ${msg.role === "user" ? "bg-kOrange text-white ml-auto" : "bg-white text-gray-800"}`}
+            className={`p-3 rounded-lg max-w-[75%] lg:max-w-[45%] text-sm sm:text-base ${msg.role === "user" ? "bg-kOrange text-white ml-auto" : "bg-white text-gray-800"}`}
           >
             {msg.content}
           </div>
@@ -57,16 +57,16 @@ const Ask = () => {
       </div>
       
       {/* Input Bar */}
-      <div className="flex items-center p-2 bg-white shadow-md fixed bottom-0 w-full max-w-lg mx-auto">
+      <div className="flex items-center p-2 bg-white shadow-md fixed bottom-0 w-full lg:max-w-2xl max-w-lg mx-auto px-4 py-3 rounded-t-lg">
         <input
           type="text"
-          className="flex-1 border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-kOrange"
+          className="flex-1 border rounded-2xl p-3 focus:outline-none focus:ring-2 focus:ring-kOrange text-sm sm:text-base"
           placeholder="Ask a question..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
-        <button onClick={sendMessage} className="ml-2 bg-kOrange hover:bg-orange-500 text-white p-2 rounded-lg">
+        <button onClick={sendMessage} className="ml-2 bg-kOrange hover:bg-orange-500 text-white p-3 rounded-2xl">
           <Send size={20} />
         </button>
       </div>

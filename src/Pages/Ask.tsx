@@ -5,7 +5,7 @@ import OpenAI from "openai";
 const openai = new OpenAI({ apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true });
 
 const Ask = () => {
-  const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
+  const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessageParam[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const chatRef = useRef<HTMLDivElement>(null);
@@ -17,7 +17,7 @@ const Ask = () => {
   const sendMessage = async () => {
     if (!input.trim()) return;
     
-    const newMessages = [...messages, { role: "user", content: input }];
+    const newMessages: OpenAI.Chat.ChatCompletionMessageParam[] = [...messages, { role: "user", content: input }];
     setMessages(newMessages);
     setInput("");
     setLoading(true);
@@ -49,7 +49,9 @@ const Ask = () => {
             key={index} 
             className={`p-3 rounded-lg max-w-[75%] lg:max-w-[45%] text-sm sm:text-base ${msg.role === "user" ? "bg-kOrange text-white ml-auto" : "bg-white text-gray-800"}`}
           >
-            {msg.content}
+            {Array.isArray(msg.content) 
+              ? msg.content.map((part, idx) => <span key={idx}>{part.toString()}</span>) 
+              : msg.content?.toString() || ""}
           </div>
         ))}
         {loading && <p className="text-gray-500 text-sm text-center">AI is thinking...</p>}

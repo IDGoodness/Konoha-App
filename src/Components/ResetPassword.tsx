@@ -20,7 +20,7 @@ const ResetPassword = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <div className="flex flex-1 items-center justify-center p-6">
-        <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-16">
+        <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6 lg:p-16">
           <h2 className="text-2xl font-bold mb-4 text-center">Reset Password</h2>
           <input
             className="w-full p-3 border rounded-lg mb-3"

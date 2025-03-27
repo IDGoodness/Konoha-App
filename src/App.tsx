@@ -21,8 +21,8 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <AuthProvider>
           <Navbar />
           <ScrollToTop />
             <Routes>
@@ -39,8 +39,8 @@ function App() {
               </Route>
             </Routes>
           <Footer />
+        </AuthProvider>
         </BrowserRouter>
-      </AuthProvider>
     
     </>
   )

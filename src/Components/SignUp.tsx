@@ -23,7 +23,7 @@ const SignUp = () => {
 
   return (
     <div className="flex flex-col min-h-screen items-center justify-center p-6 bg-gray-100">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-20">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6 lg:p-20">
         <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
         {/* <input className="w-full p-3 border rounded-lg mb-3" type="text" placeholder="Display Name" value={displayName} onChange={(e) => setDisplayName(e.target.value) } /> */}
         <input

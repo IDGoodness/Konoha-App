@@ -1,28 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import UserDropdown from "./UserDropdown";
 import { useAuth } from "../context/AuthContext";
 
-
-
-
-
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { user } = useAuth();
+    const navRef = useRef<HTMLDivElement>(null);
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
-    const { user } = useAuth();
+    const handleClickOutside = (event: MouseEvent) => {
+        if (navRef.current && !navRef.current.contains(event.target as Node)) {
+            setIsMobileMenuOpen(false);
+        }
+    };
+
+    const handleScroll = () => {
+        setIsMobileMenuOpen(false);
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
         <>
-            <nav className="block w-full px-4 py-2 mx-auto bg-white shadow-md lg:px-1 lg:py-1 fixed top-0 z-50 ">
-                <div className="container flex flex-wrap items-center justify-between mx-auto ">
+            <nav
+                ref={navRef}
+                className="block w-full px-4 py-2 mx-auto bg-white shadow-md lg:px-1 lg:py-1 fixed top-0 z-50"
+            >
+                <div className="container flex flex-wrap items-center justify-between mx-auto">
                     <Link to={"/"} className="mr-10 block cursor-pointer py-1">
-                        <img src={logo} alt="Logo" className="w-28 " />
+                        <img src={logo} alt="Logo" className="w-28" />
                     </Link>
 
                     <div className="hidden lg:block">
@@ -52,15 +71,17 @@ const Navbar = () => {
 
                     <div className="hidden lg:flex gap-4">
                         {!user ? (
-                                <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-orange-500 text-white rounded-md">
-                                    <button className="w-40 py-2 text-lg font-semibold text-white">
-                                        Sign Up/ Sign In
-                                    </button>
-                                </Link>
-                            ) : (
-                                <UserDropdown />
-                            )
-                        }
+                            <Link
+                                to={"/signup"}
+                                className="block cursor-pointer py-1 bg-kOrange hover:bg-orange-500 text-white rounded-md"
+                            >
+                                <button className="w-40 py-2 text-lg font-semibold text-white">
+                                    Sign Up/ Sign In
+                                </button>
+                            </Link>
+                        ) : (
+                            <UserDropdown />
+                        )}
                     </div>
 
                     <button
@@ -69,19 +90,35 @@ const Navbar = () => {
                         onClick={toggleMobileMenu}
                     >
                         <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                ></path>
-                            </svg>
+                            {isMobileMenuOpen ? (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M6 18L18 6M6 6l12 12"
+                                    ></path>
+                                </svg>
+                            ) : (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    ></path>
+                                </svg>
+                            )}
                         </span>
                     </button>
                 </div>
@@ -109,17 +146,19 @@ const Navbar = () => {
                                     Practice Tests
                                 </Link>
                             </li>
-                            <li className="flex items-center p-1 text-lg gap-x-2 " >
+                            <li className="flex items-center p-1 text-lg gap-x-2">
                                 {!user ? (
-                                        <Link to={"/signup"} className="block cursor-pointer py-1 bg-kOrange hover:bg-orange-500 text-white rounded-md">
-                                            <button className="w-32 py-2 text-lg font-semibold text-white">
-                                                Sign Up/Sign Up
-                                            </button>
-                                        </Link>
-                                    ) : (
-                                        <UserDropdown />
-                                    )
-                                }
+                                    <Link
+                                        to={"/signup"}
+                                        className="block cursor-pointer py-1 bg-kOrange hover:bg-orange-500 text-white rounded-md"
+                                    >
+                                        <button className="w-32 py-2 text-lg font-semibold text-white">
+                                            Sign Up/Sign Up
+                                        </button>
+                                    </Link>
+                                ) : (
+                                    <UserDropdown />
+                                )}
                             </li>
                         </ul>
                     </div>

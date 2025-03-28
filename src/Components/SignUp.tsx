@@ -8,17 +8,31 @@ const SignUp = () => {
   // const [ displayName, setDisplayName ] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
+  const [error, setError] = useState(""); // State for errors
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
+    setError(""); // Reset the error
     try {
       // await signUp(email, password, displayName);
       await signUp(email, password);
       navigate("/signin"); // Redirect to sign-in page after successful sign-up
-    } catch (error: any) {
-      setMessage(error.message);
+    } catch (err: any) {
+      // setMessage(error.message);
+      setError(getFriendlyErrorMessage(err.code)); // Handle error
     }
+  };
+
+  const getFriendlyErrorMessage = (code: string) => {
+    const errorMessages: Record<string, string> = {
+      "auth/email-already-in-use": "This email is already registered.",
+      "auth/weak-password": "Password should be at least 6 characters long.",
+      "auth/invalid-email": "Please enter a valid email address.",
+      "auth/network-request-failed": "Network error. Check your connection.",
+      default: "Something went wrong. Please try again.",
+    };
+    return errorMessages[code] || errorMessages.default;
   };
 
   return (
@@ -46,7 +60,7 @@ const SignUp = () => {
         >
           Sign Up
         </button>
-        {message && <p className="mt-3 text-sm text-red-500 text-center">{message}</p>}
+        <p className="mt-3 text-lg text-red-600 text-center">{error}</p>
         
         {/* Sign-in link added back */}
         <p className="mt-4 text-center text-lg">

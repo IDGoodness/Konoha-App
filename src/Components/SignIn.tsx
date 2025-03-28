@@ -7,16 +7,31 @@ import { signIn } from "../authService";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate(); // Initialize navigate
 
   const handleSignIn = async () => {
-    try {
-      await signIn(email, password);
-      navigate("/"); // Redirect to home page after successful sign-in
-    } catch (error: any) {
-      setMessage(error.message);
-    }
+      setError(""); // Reset the error
+      try {
+        // await signUp(email, password, displayName);
+        await signIn(email, password);
+        navigate("/"); // Redirect to sign-in page after successful sign-up
+      } catch (err: any) {
+        // setMessage(error.message);
+        setError(getFriendlyErrorMessage(err.code)); // Handle error
+      }
+    };
+  
+  const getFriendlyErrorMessage = (code: string) => {
+    const errorMessages: Record<string, string> = {
+      "auth/user-not-found": "No user found with this email.",
+      "auth/wrong-password": "Incorrect password. Try again.",
+      "auth/invalid-email": "Invalid email format.",
+      "auth/network-request-failed": "Network error. Check your connection.",
+      default: "Login failed. Please try again.",
+    };
+    return errorMessages[code] || errorMessages.default;
   };
 
   return (
@@ -43,7 +58,7 @@ const SignIn = () => {
         >
           Sign In
         </button>
-        {message && <p className="mt-3 text-sm text-red-500 text-center">{message}</p>}
+        <p className="mt-3 text-lg text-red-600 text-center">{error}</p>
         <p className="mt-4 text-center text-lg">
           Don't have an account?{" "}
           <Link to="/signup" className="text-kOrange hover:underline">

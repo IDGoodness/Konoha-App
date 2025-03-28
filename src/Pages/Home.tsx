@@ -94,7 +94,7 @@ const Home = () => {
       </div>
 
       {/* Join our Community */}
-      <div className="bg-kOrange rounded-4xl py-12 md:px-20 max-w-6xl mx-auto " >
+      <div className="bg-kOrange rounded-none lg:rounded-4xl py-12 md:px-20 max-w-6xl mx-auto " >
         <h2 className="text-3xl font-semibold text-center text-white">Join our Community</h2>
         <div className="mt-8 mx-auto px-5 space-y-5 grid grid-cols-4 md:grid-cols-7 " >
           {community.map((member, index) => (

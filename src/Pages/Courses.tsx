@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Courses = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -51,7 +51,7 @@ const Courses = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 py-12 px-6 flex flex-col items-center">
+    <div className="w-full min-h-screen bg-gray-50 py-12 px-6 flex flex-col items-center mt-20">
       {/* Hero Section */}
       <div className="max-w-4xl text-center">
         <h1 className="text-4xl font-bold text-gray-800">Learn more</h1>
@@ -66,7 +66,7 @@ const Courses = () => {
       {/* FAQ Section */}
       <div className="max-w-4xl w-full mt-8">
         {sessions.map((session, index) => (
-          <div key={index} className="mb-4 border rounded-lg overflow-hidden">
+          <div key={index} className="mb-4 border rounded-2xl overflow-hidden">
             <button
               className="w-full text-left px-6 py-4 bg-white text-gray-800 font-semibold text-lg flex justify-between items-center"
               onClick={() => toggleAccordion(index)}
@@ -75,7 +75,7 @@ const Courses = () => {
               <span>{openIndex === index ? "▲" : "▼"}</span>
             </button>
             {openIndex === index && (
-              <div className="px-6 py-4 bg-gray-100 text-gray-700">
+              <div className="px-6 py-4 bg-gray-100 text-xl text-gray-700">
                 {session.content}
               </div>
             )}
